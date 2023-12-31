@@ -1,0 +1,36 @@
+<div class="container text-center center">
+  <form class="form-signin" #LoginForm="ngForm">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label class="sr-only">Username</label>
+    <!-- TODO : Faire le binding entre les inputs et les attributs du composant -->
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      required
+      [(ngModel)]="username"
+      name="username"
+    >
+    <label class="sr-only">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      required
+      [(ngModel)]="password"
+      name="password"
+    >
+        
+    <button
+      class="btn btn-lg btn-primary btn-block"
+      type="submit"
+      [disabled]="LoginForm.invalid"
+      (click)="onSubmit()"
+    >Sign in</button>
+    <button
+      class="btn btn-lg btn-secondary btn-block"
+      type="button"
+      routerLink="/register"
+    >Register</button>
+  </form>
+</div>

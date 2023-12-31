@@ -1,0 +1,88 @@
+<div class="center">
+  <button class="btn btn-secondary float-right" (click)="logout()">Sign out</button>
+
+  <div class="container project-form">
+    <form autocomplete="off" class="form-signin">
+      <h3 class="h3 mb-3 font-weight-normal">Nouveau projet</h3>
+      <label class="sr-only">Nom du projet</label>
+      <input
+        (keyup)="onInputUpdate($event.target.value, 'name')"
+        type="text"
+        class="form-control"
+        placeholder="Nom du projet"
+        required
+        name="name"
+        [(ngModel)]="name"
+      >
+      <label class="sr-only">Montant</label>
+      <input
+        (keyup)="onInputUpdate($event.target.value, 'amount')"
+        type="number"
+        class="form-control"
+        placeholder="Montant du projet, ex: 999"
+        required
+        name="amount"
+        [(ngModel)]="amount"
+      >
+      <label class="sr-only">Description</label>
+      <textarea
+        (keyup)="onInputUpdate($event.target.value, 'description')"
+        rows="3"
+        class="form-control"
+        placeholder="Description du projet"
+        required
+        name="description"
+        [(ngModel)]="description"
+      ></textarea>
+      <button
+        class="btn btn-lg btn-primary custom-btn btn-block"
+        type="submit"
+        [disabled]="!formIsValid"
+        (click)="onSubmit()"
+      >Créer</button>
+    </form>
+  </div>
+
+  <div>
+    <h3>Projets de : {{ user.username }}</h3>
+    <!-- Tableau contenant les projets -->
+    <!-- TODO : Lier le tableau ci-dessous avec `this.projects` pour afficher un projet par ligne -->
+    <!-- TODO : Masquer ce tableau et afficher un message indiquant l'absence de projets -->
+    <div *ngIf="!projects.length">
+      <p>Vous n'avez pas de projets actuellement</p>
+      <p>Vous pouvez les créer ci dessus</p>
+    </div>
+    
+    <table class="project-table" *ngIf="projects.length">
+      <thead>
+        <tr>
+          <!-- project.name -->
+          <th>Nom</th>
+          <!-- project.amount -->
+          <th>Montant</th>
+          <!-- project.description -->
+          <th>Description</th>
+          <!-- project.ownerUsername -->
+          <th>Propriétaire</th>
+          
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <td>{{ project.name }}</td>
+          <td>{{ project.amount }}</td>
+          <td>{{ project.description }}</td>
+          <td>{{ project.ownerUsername }}</td>
+          <td>
+            <button
+            class="btn btn-sm btn-primary custom-btn btn-block"
+            (click)="deleteProjectById(project)"
+            >Supp
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

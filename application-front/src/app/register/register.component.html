@@ -1,0 +1,56 @@
+<div class="container text-center center">
+  <form autocomplete="off" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Register new account</h1>
+    <label class="sr-only">Email address</label>
+    <input
+      (keyup)="onInputUpdate($event.target.value, 'email')"
+      type="text"
+      class="form-control"
+      placeholder="Email"
+      required
+      [(ngModel)]="email"
+      name="email"
+    >
+    <label class="sr-only">Username</label>
+    <input
+      (keyup)="onInputUpdate($event.target.value, 'username')"
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      required
+      [(ngModel)]="username"
+      name="username"
+    >
+    <label class="sr-only">Password</label>
+    <input
+      (keyup)="onInputUpdate($event.target.value, 'password')"
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      required
+      [(ngModel)]="password"
+      name="password"
+    >
+    <small class="form-text text-muted">
+      Your password must:
+      <ul>
+        <li>Be at least 8 characters long</li>
+        <li>Contain at least one uppercase letter</li>
+        <li>Contain at least one digit</li>
+        <li>Contain at least one special character</li>
+      </ul>
+    </small>
+    
+    <button
+      class="btn btn-lg btn-primary btn-block"
+      type="submit"
+      [disabled]="!formIsValid"
+      (click)="onSubmit()"
+    >Register</button>
+    <button
+      class="btn btn-lg btn-secondary btn-block"
+      type="button"
+      routerLink="/login"
+    >Sign in</button>
+  </form>
+</div>
